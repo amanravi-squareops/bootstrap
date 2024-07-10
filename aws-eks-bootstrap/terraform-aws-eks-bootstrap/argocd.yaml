@@ -1,0 +1,13 @@
+global:
+  deploymentAnnotations:
+    reloader.stakater.com/auto: "true"
+  statefulsetAnnotations:
+    reloader.stakater.com/auto: "true"
+
+server:
+  extraArgs:
+    - "--application-namespaces=*"
+
+controller:
+  extraArgs:
+    - "--application-namespaces=*"

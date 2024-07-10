@@ -1,0 +1,26 @@
+# Karpenter Provisioner
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default
+spec:
+  labels:
+    application: "xyz"
+  providerRef:
+    name: karpenter-node-template
+  requirements:
+  - key: karpenter.sh/capacity-type
+    operator: In
+    values:
+    - spot
+  - key: karpenter.k8s.aws/instance-size
+    operator: NotIn
+    values:
+    - "nano"
+    - "micro"
+    - "small"
+  - key: kubernetes.io/arch
+    operator: In
+    values:
+    - amd64
+  ttlSecondsAfterEmpty: 300
